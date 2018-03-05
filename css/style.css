@@ -434,6 +434,14 @@ select:focus {
 }
 .header-area .logo {
     margin-top: -25px;
+    
+}
+.header-area .logo img{
+     width: 333px;
+    height: 202px;
+    margin-top: -46px;
+    margin-left: -103px;
+    margin-bottom: -78px;
 }
 .header-contact-info ul {
     overflow: hidden;
@@ -1799,13 +1807,18 @@ select:focus {
     padding: 85px 0 77px;
 }
 .single-footer-widget .footer-logo {
-  padding: 0 0 30px;
+    /* padding: 0 0 30px; */
+    margin-top: -110px;
+}
+.single-footer-widget .footer-logo img{
+    width: 334px;
+    height: 200px;
 }
 .single-footer-widget .our-info {
   overflow: hidden;
 }
 .single-footer-widget .our-info p {
-    margin: 0 0 15px;
+    margin: -7px 0px 0px 15px;
     color: #949494;
     font-size: 14px;
     font-weight: 400;
