@@ -1,0 +1,17 @@
+.header-contact-info ul li .iocn-holder, .header-contact-info ul li .text-holder {
+
+    padding-left: 15px;
+}
+
+span.flaticon-arrows{
+    float: left;
+}
+
+.main-menu {
+    float: right;
+    position: relative;
+}
+
+section.rev_slider_wrapper{
+    direction: ltr;
+}
