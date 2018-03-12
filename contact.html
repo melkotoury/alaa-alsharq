@@ -1,3 +1,21 @@
+<?php
+    if(isset($_POST['submit'])){
+        $to = "info@alaa-asharq.com"; // this is your Email address
+        $from = $_POST['email']; // this is the sender's Email address
+        $name = $_POST['name'];
+        $tel = $_POST['tel'];
+        $subject = "Form submission";
+        $subject2 = "Copy of your form submission";
+        $message = $name . " " . $tel . " wrote the following:" . "\n\n"  . $_POST['message'];
+        $message2 = "Here is a copy of your message " . $name . "\n\n" . $_POST['message'];
+        $headers = "From:" . $from;
+        $headers2 = "From:" . $to;
+        mail($to,$subject,$message,$headers);
+        mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
+        echo "Mail Sent. Thank you " . $name . ", we will contact you shortly.";
+        // You can also use header('Location: thank_you.php'); to redirect to another page.
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +32,10 @@
 	<link rel="stylesheet" href="css/style.css">
 	<!-- Responsive stylesheet -->
 	<link rel="stylesheet" href="css/responsive.css">
+       <!--RTL Stylesheets-->
+    <link rel="stylesheet" href="css/bootstrap-rtl.css">
+    <link rel="stylesheet" href="css/rtl.css">
+
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png" sizes="32x32">
@@ -41,8 +63,9 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="welcome pull-left">
-                                <p><span class="flaticon-arrows"></span>Welcome to Alaa El Sharq Experts, for AC and Chemicals</p>
-                            </div>
+                                <p><span class="flaticon-arrows"></span> مرحبا بكم فى الاء الشرق ، خبراء فى صناعة التكيف و الكيماويات ادارة وفنيين سعوديين
+                                    الكهربائي / سليمان النغيمشي
+                                    الكيميائي/ فهد النغيمشي</p>                            </div>
                             <div class="top-social-links">
                                 <ul>
                                     <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -81,7 +104,7 @@
                                         <span class="flaticon-technology"></span>
                                     </div>
                                     <div class="text-holder">
-                                        <h5>Call us now</h5>
+                                        <h5>اتصل بنا الان</h5>
                                         <h6>+1-888-987-6543</h6>
                                     </div>
                                 </li>
@@ -90,8 +113,8 @@
                                         <span class="flaticon-pin"></span>
                                     </div>
                                     <div class="text-holder">
-                                        <h5>121 Park Drive</h5>
-                                        <h6>Varick St, Newyork 1006</h6>
+                                        <h5>الرياض</h5>
+                                        <h6>المملكة العربية السعودية</h6>
                                     </div>
                                 </li>
                                 <li>
@@ -99,8 +122,8 @@
                                         <span class="flaticon-agenda"></span>
                                     </div>
                                     <div class="text-holder">
-                                        <h5>Mon - Satday</h5>
-                                        <h6>09.00am to 18.00pm</h6>
+                                        <h5>الاحد - الخميس</h5>
+                                        <h6>09.00ص الى  18.00م</h6>
                                     </div>
                                 </li>
                             </ul>
@@ -153,11 +176,10 @@
                     </div>
                     <div class="navbar-collapse collapse clearfix">
                         <ul class="navigation clearfix">
-                       <li ><a href="index.html">Home</a></li>
-
-                           <li><a href="products.html">Our Products</a></li>
-                            <li class="current"><a href="contact.html">Contact Us</a></li>
-                            <li><a href="ar/index.html">العربية</a></li>
+                           <li><a href="en/index.html">English</a></li>
+                           <li class="current"><a href="contact.html">اتصل بنا</a></li>
+                           <li><a href="products.html">المنتجات</a></li>
+                            <li><a href="index.html">الرئيسية</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -176,7 +198,7 @@
 <!--Start breadcrumb area-->     
 <section class="breadcrumb-area">
 	<div class="container text-center">
-		<h1>Contact Us</h1>
+		<h1>اتصل بنا</h1>
 	</div>
 </section>
 <!--End breadcrumb area-->
@@ -186,9 +208,9 @@
     <div class="container">
         <div class="left">
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html">الرئيسية</a></li>
                 <li><i class="fa fa-caret-right" aria-hidden="true"></i></li>
-                <li class="active">Contact Us</li>
+                <li class="active">اتصل بنا</li>
             </ul>    
         </div>
     </div>
@@ -202,12 +224,12 @@
             <div class="col-md-4">
                 <div class="contact-info">
                     <div class="title">
-                        <h2>Quick Contact</h2>
+                        <h2>بيانات الاتصال بنا</h2>
                     </div>
                     <div class="accordion-box">
                         <!--Start single accordion box-->
                         <div class="accordion accordion-block">
-                            <div class="accord-btn active"><h4>Headquarters</h4></div>
+                            <div class="accord-btn active"><h4>شركة الاء الشرق</h4></div>
                             <div class="accord-content collapsed">
                                 <ul class="contact-info-list">
                                     <li>
@@ -215,7 +237,7 @@
                                             <span class="flaticon-pin"></span>
                                         </div>
                                         <div class="text-holder">
-                                            <h5><span>321, Breaking Street,</span><br> 2nd cros, Newyork ,USA 10002</h5>
+                                            <h5><span>الرياض</span><br> المملكة العربية السعودية</h5>
                                         </div>
                                     </li>
                                     <li>
@@ -223,7 +245,7 @@
                                             <span class="flaticon-technology"></span>
                                         </div>
                                         <div class="text-holder">
-                                            <h5><span>Call Us</span><br>+321 4567 89 012 &amp; 79 023</h5>
+                                            <h5><span>اتصل بنا</span><br>00966505281365 &amp; 00966555281365</h5>
                                         </div>
                                     </li>
                                     <li>
@@ -231,61 +253,61 @@
                                             <span class="flaticon-interface"></span>
                                         </div>
                                         <div class="text-holder">
-                                            <h5><span>Mail Us</span><br>Support@aircare.com</h5>
+                                            <h5><span>البريد الالكترونى</span><br>info@alaa-asharq.com</h5>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="icon-holder">
-                                            <span class="flaticon-clock"></span>
-                                        </div>
-                                        <div class="text-holder">
-                                            <h5><span>Opening Time</span><br>Mon - Sat: 09.00am to 18.00pm</h5>
-                                        </div>
-                                    </li>
+                                    <!--<li>-->
+                                        <!--<div class="icon-holder">-->
+                                            <!--<span class="flaticon-clock"></span>-->
+                                        <!--</div>-->
+                                        <!--<div class="text-holder">-->
+                                            <!--<h5><span>Opening Time</span><br>Mon - Sat: 09.00am to 18.00pm</h5>-->
+                                        <!--</div>-->
+                                    <!--</li>-->
                                 </ul>
                             </div>
                         </div>
                         <!--End single accordion box-->
                         <!--Start single accordion box-->
-                        <div class="accordion accordion-block">
-                            <div class="accord-btn"><h4>Support Centre</h4></div>
-                            <div class="accord-content">
-                                <ul class="contact-info-list">
-                                    <li>
-                                        <div class="icon-holder">
-                                            <span class="flaticon-pin"></span>
-                                        </div>
-                                        <div class="text-holder">
-                                            <h5><span>226, Breaking Street,</span><br> 2nd cros, Newyork ,USA 1002</h5>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon-holder">
-                                            <span class="flaticon-technology"></span>
-                                        </div>
-                                        <div class="text-holder">
-                                            <h5><span>Call Us</span><br>+321 4567 89 012 &amp; 79 023</h5>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon-holder">
-                                            <span class="flaticon-interface"></span>
-                                        </div>
-                                        <div class="text-holder">
-                                            <h5><span>Mail Us</span><br>Support@aircare.com</h5>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon-holder">
-                                            <span class="flaticon-clock"></span>
-                                        </div>
-                                        <div class="text-holder">
-                                            <h5><span>Opening Time</span><br>Mon - Sat: 09.00am to 18.00pm</h5>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        <!--<div class="accordion accordion-block">-->
+                            <!--<div class="accord-btn"><h4>Support Centre</h4></div>-->
+                            <!--<div class="accord-content">-->
+                                <!--<ul class="contact-info-list">-->
+                                    <!--<li>-->
+                                        <!--<div class="icon-holder">-->
+                                            <!--<span class="flaticon-pin"></span>-->
+                                        <!--</div>-->
+                                        <!--<div class="text-holder">-->
+                                            <!--<h5><span>226, Breaking Street,</span><br> 2nd cros, Newyork ,USA 1002</h5>-->
+                                        <!--</div>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<div class="icon-holder">-->
+                                            <!--<span class="flaticon-technology"></span>-->
+                                        <!--</div>-->
+                                        <!--<div class="text-holder">-->
+                                            <!--<h5><span>Call Us</span><br>+321 4567 89 012 &amp; 79 023</h5>-->
+                                        <!--</div>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<div class="icon-holder">-->
+                                            <!--<span class="flaticon-interface"></span>-->
+                                        <!--</div>-->
+                                        <!--<div class="text-holder">-->
+                                            <!--<h5><span>Mail Us</span><br>Support@aircare.com</h5>-->
+                                        <!--</div>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<div class="icon-holder">-->
+                                            <!--<span class="flaticon-clock"></span>-->
+                                        <!--</div>-->
+                                        <!--<div class="text-holder">-->
+                                            <!--<h5><span>Opening Time</span><br>Mon - Sat: 09.00am to 18.00pm</h5>-->
+                                        <!--</div>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
                         <!--End single accordion box--> 
                     </div>
                 </div>
@@ -293,34 +315,34 @@
             <div class="col-md-8">
                 <div class="contact-form">
                     <div class="title">
-                        <h2>Send Message Us</h2>
+                        <h2>ارسل لنا رسالة</h2>
                     </div>
-                    <form id="contact-form" name="contact_form" class="default-form" action="http://steelthemes.com/demo/html/Aircare/inc/sendmail.php" method="post">
+                    <form id="contact-form" name="contact_form" class="default-form" action="" method="post">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" name="form_name" value="" placeholder="Your Name*" required="">
+                                <input type="text" name="name" value="" placeholder="الاسم*" required="">
                             </div>
                             <div class="col-md-6">
-                                <input type="email" name="form_email" value="" placeholder="Your Mail*" required="">
+                                <input type="email" name="email" value="" placeholder="البريد الالكترونى*" required="">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" name="form_phone" value="" placeholder="Phone">
+                                <input type="text" name="tel" value="" placeholder="التليفون*">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="form_subject" value="" placeholder="Subject">
+                                <input type="text" name="subject" value="" placeholder="عنوان الرسالة*">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <textarea name="form_message" placeholder="Your Message.." required=""></textarea>
+                                <textarea name="message" placeholder="الرسالة..*" required=""></textarea>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
-                                <button class="thm-btn bg-1" type="submit" data-loading-text="Please wait...">send message</button>
+                                <button class="thm-btn bg-1" type="submit" data-loading-text="Please wait...">ارسل الرسالة</button>
                             </div>
                         </div>
                     </form>
@@ -333,24 +355,23 @@
 
 <!--Start Google map area-->
 <section class="google-map-area">
-    <div 
-        class="google-map" 
-        id="contact-google-map" 
-        data-map-lat="44.529688" 
-        data-map-lng="-72.933009" 
-        data-icon-path="images/resources/map-marker.png" 
-        data-map-title="Brooklyn, New York, United Kingdom" 
-        data-map-zoom="12" 
-        data-markers='{
-            "marker-1": [44.529688, -72.933009, "<h4>Head Office</h4><p>44/108 Brooklyn, UK</p>"],
-            "marker-2": [44.231172, -76.485954, "<h4>Branch Office</h4><p>4/99 Alabama, USA</p>"]
+    <div
+            class="google-map"
+            id="contact-google-map"
+            data-map-lat="24.774265"
+            data-map-lng="46.738586"
+            data-icon-path="images/resources/map-marker.png"
+            data-map-title="Brooklyn, New York, United Kingdom"
+            data-map-zoom="12"
+            data-markers='{
+            "marker-1": [24.774265, 46.738586, "<h4>Head Office</h4><p>Riyadh, Saudi Arabia</p>"]
         }'>
 
     </div>
 </section>
-<!--End Google map area-->     
+<!--End Google map area-->
 
-<!--Start footer area-->  
+<!--Start footer area-->
 <footer class="footer-area">
     <div class="container">
         <div class="row">
@@ -363,12 +384,12 @@
                         </a>
                     </div>
                     <div class="our-info">
-                        <p>Alaa Al Sharq was established in 1990 by John Britto and Zat Maxwell in Newyork, United States. John and Zat continue to manage the company today and take pride in providing a family environment for all of our employees. Both owners are very hands-on in all aspects.</p>
-<!--
-                        <div class="button">
-                            <a class="" href="#"><span class="flaticon-arrows-1"></span>Read More</a>
-                        </div>
--->
+                        <p>تأسست شركة ألاء الشرق عام ٢٠٠٦ حيث أنها بدأت بصيانة التكيفات وسرعان ما استمدت الخبرة اللازمة للدخول في مجال التصنيع وقمنا فعلاً بتصنيع أول تكيف صحراوي عام ٢٠٠٨ وبالاضافة لم توصلنا له في التصنيع قمنا ادن بتطوير المكيفات الصحراوية وهذا بعد حصولنا على الخبرة اللازمة في هذا المجال ومحاولات الإبداع فيه تحت إشراف وإنتاج سعودي ١٠٠%</p>
+                        <!--
+                                                <div class="button">
+                                                    <a class="" href="#"><span class="flaticon-arrows-1"></span>Read More</a>
+                                                </div>
+                        -->
                     </div>
                 </div>
             </div>
@@ -377,24 +398,25 @@
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="single-footer-widget mar-btm">
                     <div class="title">
-                        <h3>Usefull Links</h3>
+                        <h3>روابط مفيدة</h3>
                     </div>
                     <ul class="usefull-links left">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="products.html">Our Products</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="index.html">الصفحة الرئيسية</a></li>
+                        <li><a href="products.html">المنتجات</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                        <li><a href="en/index.html">English</a></li>
 
                     </ul>
 
                 </div>
             </div>
             <!--Start single footer widget-->
-     
+
             <!--Start single footer widget-->
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="single-footer-widget martop">
                     <div class="title">
-                        <h3>Contact Details</h3>
+                        <h3>وسائل للاتصال</h3>
                     </div>
                     <ul class="footer-contact-info">
                         <li>
@@ -402,15 +424,15 @@
                                 <span class="flaticon-pin map-marker"></span>
                             </div>
                             <div class="text-holder">
-                                <h5><span>Address:</span> Park Drive, Varick Str<br>New York, NY 10012, USA</h5>
+                                <h5><span>العنوان:</span> الرياض<br>المملكة العربية السعودية</h5>
                             </div>
                         </li>
-                        <li>
+                        <li style="margin-bottom: 30px;">
                             <div class="icon-holder">
                                 <span class="flaticon-technology"></span>
                             </div>
                             <div class="text-holder">
-                                <h5><span>Phone:</span> (123) 0200 12345 &<br>1800-45-678-9012</h5>
+                                <h5><span>ارقام التليفون:</span> <span style="float: left; direction: ltr; color: #999999; font-weight: normal; margin-left: 76px; font-size: 14px;">009 6650 5281365<br> 009 6655 5281365</span></h5>
                             </div>
                         </li>
                         <li>
@@ -418,34 +440,34 @@
                                 <span class="flaticon-interface"></span>
                             </div>
                             <div class="text-holder">
-                                <h5><span>Email:</span> Mailus@Aircare.com</h5>
+                                <h5><span>البريد الالكترونى:</span> info@alaa-asharq.com</h5>
                             </div>
                         </li>
-                        <li>
-                            <div class="icon-holder">
-                                <span class="flaticon-clock"></span>
-                            </div>
-                            <div class="text-holder">
-                                <h5><span>Off Hrs:</span> Mon-Satday: 9am to 18pm</h5>
-                            </div>
-                        </li>
+                        <!--<li>-->
+                        <!--<div class="icon-holder">-->
+                        <!--<span class="flaticon-clock"></span>-->
+                        <!--</div>-->
+                        <!--<div class="text-holder">-->
+                        <!--<h5><span>Off Hrs:</span> Mon-Satday: 9am to 18pm</h5>-->
+                        <!--</div>-->
+                        <!--</li>-->
                     </ul>
                 </div>
             </div>
             <!--End single footer widget-->
         </div>
     </div>
-</footer>   
+</footer>
 <!--End footer area-->
 
-<!--Start footer bottom area--> 
+<!--Start footer bottom area-->
 <section class="footer-bottom-area">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="footer-bottom">
                     <div class="copyright-text pull-left">
-                        <p>Copyrights © 2018 All Rights Reserved by <a href="#">Alaa Al Sharq.</a> Designed by <a href="http://www.rootcave.com" target="_blank">Root Cave</a></p> 
+                        <p>Copyrights © 2018 All Rights Reserved by <a href="#">Alaa Al Sharq.</a> Designed by <a href="http://www.rootcave.com" target="_blank">Root Cave</a></p>
                     </div>
                     <div class="footer-social-links pull-right">
                         <ul>
@@ -455,12 +477,12 @@
                             <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
                         </ul>
                     </div>
-                </div>    
+                </div>
             </div>
         </div>
-    </div>    
-</section> 
-<!--End footer bottom area-->  
+    </div>
+</section>
+<!--End footer bottom area-->
 
 
 <!--Scroll to top-->
@@ -500,13 +522,13 @@
 <script src="js/jquery.appear.js"></script>
 <!-- isotope script-->
 <script src="js/isotope.js"></script>
-<script src="js/jquery.prettyPhoto.js"></script> 
+<script src="js/jquery.prettyPhoto.js"></script>
 <!-- jQuery timepicker js -->
 <script src="assets/timepicker/timePicker.js"></script>
 <!-- Bootstrap select picker js -->
-<script src="assets/bootstrap-sl-1.12.1/bootstrap-select.js"></script>  
+<script src="assets/bootstrap-sl-1.12.1/bootstrap-select.js"></script>
 <!-- Html 5 light box script-->
-<script src="assets/html5lightbox/html5lightbox.js"></script>                             
+<script src="assets/html5lightbox/html5lightbox.js"></script>
 
 
 <!-- revolution slider js -->
@@ -530,5 +552,4 @@
 
 </body>
 
-<!-- Mirrored from steelthemes.com/demo/html/Aircare/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Mar 2018 17:58:24 GMT -->
-</html>   
+</html>
